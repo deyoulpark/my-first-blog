@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <a class="btn btn-default btn-lg" href="{% url 'home' %}"><span class="glyphicon glyphicon-transfer"></span> Connect Start </a>
+
+  <h1>File Upload</h1>
+  <form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <a class="btn btn-default btn-lg" href="{% url 'model_form_upload' %}"><span class="glyphicon glyphicon-floppy-open"></span></a>
+
+    <p><h3>Uploaded files:</h3></p>
+
+
+      <ul class="list-group">
+        {% for obj in documents %}
+        <li class="list-group-item">
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <a href="{% url 'upfile_remove' pk=obj.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+        </li>
+        {% endfor %}
+      </ul>
+
+  </form>
+{% endblock %}

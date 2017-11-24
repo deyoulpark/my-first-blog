@@ -4,8 +4,12 @@ from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from .forms import UploadFileForm
 
-# Create your views here.
+from .models import Document
+from .forms import DocumentForm
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     #posts = Post.objects.all()
@@ -65,3 +69,35 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
+
+def upfile_remove(request, pk):
+    form = get_object_or_404(Document, pk=pk)
+    form.delete()
+    return redirect('home')
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('uploaded.html')
+            #return render(request, 'blog/uploaded.html', {'form': form})
+    else:
+        form = UploadFileForm()
+        return render(request, 'blog/post_upload.html', {'form': form})
+
+def home(request):
+    documents = Document.objects.all()
+    return render(request, 'blog/upload/home.html', { 'documents': documents })
+
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = DocumentForm()
+    return render(request, 'blog/upload/model_form_upload.html', {
+        'form': form
+    })

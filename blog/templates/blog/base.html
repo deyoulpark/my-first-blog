@@ -1,11 +1,15 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>Django Girls blog</title>
+        <title>Raspberry Pi HCF IOT Simulator</title>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <script src="http://malsup.github.com/jquery.form.js"></script>
     </head>
     <body>
         <div class="page-header">
@@ -13,7 +17,7 @@
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
                 <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             {% endif %}
-            <h1><a href="{% url 'post_list' %}">Django Girls Blog</a></h1>
+            <h1><a href="{% url 'post_list' %}">HCF IOT Simulator</a></h1>
         </div>
 
         <div class="content container">

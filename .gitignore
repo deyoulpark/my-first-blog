@@ -3,5 +3,13 @@
 __pycache__
 myvenv
 db.sqlite3
+/django-docs-ko
+/django-smartfields
+/django-transfer
+/fileupload
+/home
+/media
+/pbar
+/zinnia
 /static
 .DS_Store
